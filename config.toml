@@ -13,7 +13,8 @@ root = false
     type = "linux"
 
     # The full path to Chromium or Chrome executable
-    puppetPath = "/usr/bin/chromium"
+    #puppetPath = "/usr/bin/chromium"
+    puppetPath = "/usr/bin/google-chrome"
 
     # NOTE puppetPath is needed only on FreeBSD
     # make sure you have the Chromium binary

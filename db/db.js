@@ -1,11 +1,18 @@
 const redis = require("redis");
 const shortid = require("shortid");
 const util = require('util');
+// Redis
+const redisHost = process.env.REDIS_HOST || 'localhost';  // Utiliser 'localhost' comme valeur par défaut si non définie
+const redisPort = process.env.REDIS_PORT || 6379;         // Utiliser 6379 par défaut
 
 exports.CheckRedis = function () {
-    const checkRedis = redis.createClient();
+    //const checkRedis = redis.createClient();
+    const checkRedis = redis.createClient({
+        host: redisHost,
+        port: redisPort
+    });
     checkRedis.on("error", function (error) {
-        console.error("error: cannot connect to Redis at tcp://127.0.0.1:6379\nexiting now...");
+        console.error("error: cannot connect to Redis", error);
         process.exit(1)
     });
 }

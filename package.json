@@ -1,8 +1,8 @@
 {
-  "name": "necrobrowser",
+  "name": "poc-2",
   "version": "1.0",
-  "description": "Necrobrowser is a browser instrumentation microservice written in NodeJS: it uses the Puppeteer library to control instances of Chrome or Firefox in headless and GUI mode.",
-  "main": "necrobrowser.js",
+  "description": "Session control",
+  "main": "server.js",
   "scripts": {},
   "repository": {
     "type": "git",

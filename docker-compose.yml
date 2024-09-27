@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  redis:
+    image: "redis:latest"
+    container_name: redis_service
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - poc_network
+
+  poc-2:
+    image: poc-2
+    container_name: poc-2
+    depends_on:
+      - redis
+    restart: always
+    networks:
+      - poc_network
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    ports:
+      - "3000:3000"  # Adaptez le port en fonction de l'application
+      - "5900:5900"
+    command: ["node", "server.js"]
+
+networks:
+  poc_network:
+    driver: bridge
