@@ -5,7 +5,7 @@ services:
     image: "redis:latest"
     restart: always
     ports:
-      - 6379
+      - "6379:6379"
     networks:
       - poc_network
 
@@ -20,9 +20,10 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
     ports:
-      - 3000  # Adaptez le port en fonction de l'application
-      - 5900
+      - "3000:3000"  # Adaptez le port en fonction de l'application
+      - "5900:5900"
     #command: ["node", "server.js"]
+    command: ["/usr/bin/supervisord"]
 
 networks:
   poc_network:

@@ -47,4 +47,4 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 3000 5900
 
 # Lancer supervisord pour gérer VNC, Xvfb et Google Chrome
-CMD ["/usr/bin/supervisord"]
+# CMD ["/usr/bin/supervisord"]
