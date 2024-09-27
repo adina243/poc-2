@@ -138,7 +138,7 @@ exports.GetPuppeteerArgs = () => {
 	if (configuration.root) {
 		puppeteerArgs.push('--no-sandbox','--disable-setuid-sandbox')
 	}
-	puppeteerArgs.push('--display=:99','--disable-gpu','--window-size=1024,768','--disable-dev-shm-usage','--disable-web-security','--disable-features=IsolateOrigins,site-per-process','--disable-site-isolation-trials')
+	puppeteerArgs.push('--display=:99','--disable-gpu','--disable-dev-shm-usage','--disable-web-security','--disable-features=IsolateOrigins,site-per-process','--disable-site-isolation-trials')
 
 	return puppeteerArgs
 }
