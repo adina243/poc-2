@@ -5,12 +5,12 @@ services:
     image: "redis:latest"
     restart: always
     ports:
-      - "6379:6379"
+      - 6379
     networks:
       - poc_network
 
   session_control:
-    image: "adizele/poc-2:main-ba4a897"
+    image: "adizele/poc-2:latest"
     depends_on:
       - redis
     restart: always
@@ -20,9 +20,9 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
     ports:
-      - "3000:3000"  # Adaptez le port en fonction de l'application
-      - "5900:5900"
-    #command: ["node", "server.js"]
+      - 3000  # Adaptez le port en fonction de l'application
+      - 5900
+    command: ["node", "server.js"]
 
 networks:
   poc_network:
