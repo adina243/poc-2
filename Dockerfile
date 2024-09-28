@@ -32,6 +32,16 @@ FROM accetto/ubuntu-vnc-xfce-chromium-g3
 #    apt-get install -y ./google-chrome-stable_current_amd64.deb && \
 #    rm google-chrome-stable_current_amd64.deb && \
 #    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+    git-core \
+    curl \
+    build-essential \
+    openssl libssl-dev && \
+    git clone https://github.com/nodejs/node.git && \
+    cd node && \
+    ./configure && \
+    make && \
+    sudo make install
 
 # Travailler dans le répertoire /app
 WORKDIR /app
