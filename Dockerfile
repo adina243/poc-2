@@ -49,3 +49,4 @@ EXPOSE 3000 5901 6901
 
 # Lancer supervisord pour gérer VNC, Xvfb et Google Chrome
 # CMD ["/usr/bin/supervisord"]
+CMD ["node", "server.js"]
