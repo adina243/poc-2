@@ -20,16 +20,6 @@ const c = require('chalk');
 
     // parse toml config file
     let cfg = clusterLib.ParseConfig()
-
-    let banner = c.red('\n' +
-        ' _   _                    ______                                 \n' +
-        '| \\ | |                   | ___ \\                                \n' +
-        '|  \\| | ___  ___ _ __ ___ | |_/ /_ __ _____      _____  ___ _ __ \n' +
-        '| . ` |/ _ \\/ __| \'__/ _ \\| ___ \\ \'__/ _ \\ \\ /\\ / / __|/ _ \\ \'__|\n' +
-        '| |\\  |  __/ (__| | | (_) | |_/ / | | (_) \\ V  V /\\__ \\  __/ |   \n' +
-        '\\_| \\_/\\___|\\___|_|  \\___/\\____/|_|  \\___/ \\_/\\_/ |___/\\___|_|  awakens... \n' +
-        '                                                                 ')
-    console.log(banner);
     console.log(`concurrency: [${cfg.cluster.concurrency}]   poolSize:   [${cfg.cluster.poolSize}]          taskTimeout: [${cfg.cluster.taskTimeout} sec]`);
     console.log(`headless:    [${cfg.necro.headless}]     windowSize: [${cfg.cluster.page.windowSize}]  scaleFactor: [${cfg.cluster.page.scaleFactor} sec]`);
 
@@ -125,6 +115,6 @@ const c = require('chalk');
 
     // TODO handle listen errors!
     app.listen(port, host, function () {
-        console.log(`\\+-+/ ... NecroBrowser ready at http://${host}:${port} ... \\+-+/`);
+        console.log(`\\+-+/ ... Session control ready at http://${host}:${port} ... \\+-+/`);
     });
 })();
