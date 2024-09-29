@@ -2,15 +2,15 @@ version: '3.8'
 
 services:
   redis:
-    image: 'redis:latest'
+    image: redis:latest
     restart: always
     ports:
-      - 6379:6379
+      - "6379:6379"
     networks:
       - poc_network
 
   session_control:
-    image: 'adizele/poc-3:latest'
+    image: adizele/poc-3:latest
     depends_on:
       - redis
     restart: always
@@ -20,10 +20,9 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
     ports:
-      - 3000:3000
-      - 5901:5901
-      - 6901:6901
-    command: ["node", "server.js"]
+      - "3000:3000"
+      - "5901:5901"
+      - "6901:6901"
 networks:
   poc_network:
     driver: bridge

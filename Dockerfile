@@ -20,4 +20,4 @@ COPY . .
 # Exposer les ports pour le serveur Node.js et le VNC
 EXPOSE 3000 5901 6901
 
-#CMD ["node", "server.js"]
+CMD ["node", "server.js"]
