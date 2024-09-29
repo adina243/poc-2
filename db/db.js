@@ -4,7 +4,6 @@ const util = require('util');
 
 exports.CheckRedis = function () {
     //const checkRedis = redis.createClient();
-    console.log(`Redis connection attempt on host [${redisHost}] and port [${redisPort}]`);
     const checkRedis = redis.createClient({
         host: process.env.REDIS_HOST || '127.0.0.1',
         port: process.env.REDIS_PORT || 6379,
