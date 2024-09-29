@@ -2,18 +2,17 @@ const redis = require("redis");
 const shortid = require("shortid");
 const util = require('util');
 // Redis
-//const redisHost = process.env.REDIS_HOST || 'localhost';  // Utiliser 'localhost' comme valeur par défaut si non définie
-//const redisPort = process.env.REDIS_PORT || 6379;         // Utiliser 6379 par défaut
-
-const redisHost = 'redis';
-const redisPort = 6379;  
+const redisHost = process.env.REDIS_HOST || 'localhost';  // Utiliser 'localhost' comme valeur par défaut si non définie
+const redisPort = process.env.REDIS_PORT || 6379;         // Utiliser 6379 par défaut
+const redisPassword = REDIS_PASSWORD || '';
 
 exports.CheckRedis = function () {
     //const checkRedis = redis.createClient();
     console.log(`Redis connection attempt on host [${redisHost}] and port [${redisPort}]`);
     const checkRedis = redis.createClient({
         host: redisHost,
-        port: redisPort
+        port: redisPort,
+        password: redisPassword
     });
     checkRedis.on("error", function (error) {
         console.error("error: cannot connect to Redis", error);
