@@ -7,6 +7,7 @@ RUN apt update && apt install -y \
     nodejs && \
     node -v 
 RUN apt install -y npm 
+RUN ln -s /usr/bin/chromium-browser /usr/bin/chromium
 
 # Travailler dans le répertoire /app
 WORKDIR /app

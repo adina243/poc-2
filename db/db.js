@@ -10,6 +10,7 @@ const redisPort = process.env.REDIS_PORT;
 
 exports.CheckRedis = function () {
     //const checkRedis = redis.createClient();
+    console.log(`Redis connection attempt on host [${redisHost}] and port [${redisPort}]`);
     const checkRedis = redis.createClient({
         host: redisHost,
         port: redisPort
