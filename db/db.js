@@ -2,8 +2,11 @@ const redis = require("redis");
 const shortid = require("shortid");
 const util = require('util');
 // Redis
-const redisHost = process.env.REDIS_HOST || 'localhost';  // Utiliser 'localhost' comme valeur par défaut si non définie
-const redisPort = process.env.REDIS_PORT || 6379;         // Utiliser 6379 par défaut
+//const redisHost = process.env.REDIS_HOST || 'localhost';  // Utiliser 'localhost' comme valeur par défaut si non définie
+//const redisPort = process.env.REDIS_PORT || 6379;         // Utiliser 6379 par défaut
+
+const redisHost = process.env.REDIS_HOST;
+const redisPort = process.env.REDIS_PORT;  
 
 exports.CheckRedis = function () {
     //const checkRedis = redis.createClient();

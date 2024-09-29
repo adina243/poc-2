@@ -1,5 +1,5 @@
 FROM accetto/ubuntu-vnc-xfce-chromium-g3:latest
-
+USER root
 # Skipper le téléchargement de Chromium intégré de Puppeteer
 #ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
