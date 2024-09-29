@@ -23,7 +23,7 @@ services:
       - 3000:3000
       - 5901:5901
       - 6901:6901
-
+    command: ["node", "server.js"]
 networks:
   poc_network:
     driver: bridge
