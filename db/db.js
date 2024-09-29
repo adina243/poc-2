@@ -5,12 +5,22 @@ const util = require('util');
 exports.CheckRedis = function () {
     //const checkRedis = redis.createClient();
     const checkRedis = redis.createClient({
-        host: process.env.REDIS_HOST || '127.0.0.1',
+        host: process.env.REDIS_HOST || 'redis',
         port: process.env.REDIS_PORT || 6379
     });
-    checkRedis.on("error", function (error) {
+    /*checkRedis.on("error", function (error) {
         console.error("error: cannot connect to Redis", error);
         process.exit(1)
+    });*/
+
+    // Gestion des erreurs de connexion à Redis
+    checkRedis.on('error', (err) => {
+        console.error('Erreur de connexion à Redis:', err);
+        process.exit(1)
+    });
+
+    checkRedis.on('connect', () => {
+        console.log('Connexion réussie à Redis');
     });
 }
 // redis keyspace:
