@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   redis:
-    image: redis:latest
+    image: 'redis:3.0.2'
     restart: always
     ports:
       - 6379:6379
@@ -10,7 +10,7 @@ services:
       - poc_network
 
   session_control:
-    image: adizele/poc-3:latest
+    image: 'adizele/poc-3:latest'
     depends_on:
       - redis
     restart: always
