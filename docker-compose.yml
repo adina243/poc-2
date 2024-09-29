@@ -3,6 +3,7 @@ version: '3.8'
 services:
   redis:
     image: "redis:latest"
+    container_name: "redis"
     restart: always
     ports:
       - "6379:6379"
@@ -11,6 +12,7 @@ services:
 
   session_control:
     image: "adizele/poc-3:latest"
+    container_name: "poc-3"
     depends_on:
       - redis
     restart: always
