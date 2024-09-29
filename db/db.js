@@ -3,17 +3,7 @@ const shortid = require("shortid");
 const util = require('util');
 
 exports.CheckRedis = function () {
-    //const checkRedis = redis.createClient();
-    const checkRedis = redis.createClient({
-        //host: process.env.REDIS_HOST || 'redis',
-        //port: process.env.REDIS_PORT || 6379
-        //url: 'redis://redis:6379'
-        url: 'redis://redis'
-    });
-    /*checkRedis.on("error", function (error) {
-        console.error("error: cannot connect to Redis", error);
-        process.exit(1)
-    });*/
+    const checkRedis = redis.createClient({ url: 'redis://redis' });
 
     // Gestion des erreurs de connexion à Redis
     checkRedis.on('error', (err) => {
@@ -31,7 +21,7 @@ exports.CheckRedis = function () {
 // related cookies are another HMSET like:
 // task:<type>:<short-id>
 exports.AddTask = function (name, task, cookies) {
-    const client = redis.createClient();
+    const client = redis.createClient({ url: 'redis://redis' });
     client.on("error", function (error) {
         console.error("redis error: " + error);
     });
@@ -50,7 +40,7 @@ exports.AddTask = function (name, task, cookies) {
 }
 
 exports.AddExtrudedData = function (key, entryKey, entryValue) {
-    const client = redis.createClient();
+    const client = redis.createClient({ url: 'redis://redis' });
     client.on("error", function (error) {
         console.error("redis error: " + error);
     });
@@ -68,7 +58,7 @@ exports.AddExtrudedData = function (key, entryKey, entryValue) {
 }
 
 exports.UpdateTaskStatus = async function (key, status) {
-    const client = redis.createClient();
+    const client = redis.createClient({ url: 'redis://redis' });
 
     client.on("error", function (error) {
         console.error("redis error: " + error);
@@ -83,7 +73,7 @@ exports.UpdateTaskStatus = async function (key, status) {
 }
 
 exports.UpdateTaskStatusWithReason = async function (key, status, reason) {
-    const client = redis.createClient();
+    const client = redis.createClient({ url: 'redis://redis' });
 
     client.on("error", function (error) {
         console.error("redis error: " + error);
@@ -104,7 +94,7 @@ exports.UpdateTaskStatusWithReason = async function (key, status, reason) {
 }
 
 exports.GetTask = async function (key) {
-    const client = redis.createClient();
+    const client = redis.createClient({ url: 'redis://redis' });
 
     client.on("error", function (error) {
         console.error("redis error: " + error);
@@ -144,7 +134,7 @@ exports.GetTask = async function (key) {
 }
 
 exports.GetCredentials = async function (key) {
-    const client = redis.createClient();
+    const client = redis.createClient({ url: 'redis://redis' });
 
     client.on("error", function (error) {
         console.error("redis error: " + error);
