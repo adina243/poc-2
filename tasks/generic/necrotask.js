@@ -3,7 +3,7 @@ const db = require('../../db/db')
 const clusterLib = require('../../puppeteer/cluster')
 
 exports.ScreenshotPages = async ({ browser, page, data: [taskId, cookies, params] }) => {
-    //await db.UpdateTaskStatus(taskId, "running")
+    await db.UpdateTaskStatus(taskId, "running")
 
     let urls = params.urls
     let index = 0;
@@ -27,6 +27,6 @@ exports.ScreenshotPages = async ({ browser, page, data: [taskId, cookies, params
         await page.screenshot({path: `extrusion/screenshot_${pName}_${taskId}.png`});
     }
 
-    //await db.UpdateTaskStatus(taskId, "completed")
+    await db.UpdateTaskStatus(taskId, "completed")
 }
 

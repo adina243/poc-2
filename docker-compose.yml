@@ -2,17 +2,18 @@ version: '3.8'
 
 services:
   redis:
-    image: "redis:latest"
-    container_name: "redis"
+    image: redis:latest
     restart: always
     ports:
-      - "6379:6379"
+      - 6379:6379
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes: 
+      - cache:/data
     networks:
       - poc_network
 
   session_control:
-    image: "adizele/poc-3:latest"
-    container_name: "poc-3"
+    image: adizele/poc-3:latest
     depends_on:
       - redis
     restart: always
@@ -21,10 +22,11 @@ services:
     environment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      REDIS_PASSWORD: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
     ports:
-      - "3000:3000"  # Adaptez le port en fonction de l'application
-      - "5901:5901"
-      - "6901:6901"
+      - 3000:3000  # Adaptez le port en fonction de l'application
+      - 5901:5901
+      - 6901:6901
     #command: ["node", "server.js"]
 
 networks:
