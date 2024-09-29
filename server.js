@@ -65,52 +65,48 @@ const c = require('chalk');
 
     // queues a new task and returns immediately the taskID to be used to poll the task via GET
     app.post('/instrument', async function (req, res) {
-        console.log('break1');
         try {
             let name = req.body.name;
             let tasks = req.body.task.name; // array of functions to call
-            console.log('break2');
+
             let necroIds = []
             for(let task of tasks){
-                console.log('break3');
+
                 let taskType = req.body.task.type;
                 let taskName = task;
                 let taskParams = req.body.task.params;
-                console.log('break4');
+
                 // validate task
                 let isTaskOk = loader.ValidateTask(taskType, taskName, taskParams, necrotask)
                 if(!isTaskOk){
                     res.json({'error': 'task type/name need to be alphanumeric and one from GET /tasks'})
                     return
                 }
-                console.log('break5');
+
                 // store in redis
                 let cookies = []
                 if (typeof req.body.cookie !== 'undefined') {
                     cookies = req.body.cookie;
                 }
-                console.log('break6');
+
                 let cookie_string = JSON.stringify(cookies, null, 4);
                 let b64Cookies = await Buffer.from(cookie_string).toString('base64');
 
                 const taskId = await db.AddTask(name, taskType, b64Cookies);
                 console.log(`[${taskId}] initiating necro -> name: [${name}] type: [${taskType}.${taskName}] cookies: [${cookies}]`);
-                console.log('break7');
+
                 // queue the task in the cluster calling the right function
                 // NOTE: taskType and taskName are validated to be alphanumeric, so eval is safe here
                 await cluster.queue([taskId, cookies, taskParams], eval(`necrotask['${taskType}__Tasks'].${taskName}`));
-                console.log('break8');
+
                 necroIds.push(taskId)
-                console.log('break9');
             }
-            console.log('break10');
+
             res.json({'status': 'queued', 'necroIds': necroIds});
         } catch (err) {
             // catch error
-            console.log('break11');
             res.json({'error': err});
         }
-        console.log('break12');
     });
 
     let host = cfg.platform.host;
